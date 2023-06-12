@@ -5,39 +5,203 @@ namespace BrazilianDocumentsTester
 {
     class Program
     {
+        static ConsoleColor corDeFundo = ConsoleColor.Black;
+        static ConsoleColor corDeTitulo = ConsoleColor.DarkRed;
+        static ConsoleColor corDeTituloDestacado = ConsoleColor.Yellow;
+        static ConsoleColor corDeNumero = ConsoleColor.Yellow;
+        static ConsoleColor corDeTextoDefault = ConsoleColor.White;
+        static ConsoleColor corDeSaida = ConsoleColor.Red;
+        static ConsoleColor corDoLogo = ConsoleColor.Cyan;
+
         static void Main(string[] args)
         {
-            TestarValidacaoDeCpf();
+            CarregarMenuPrincial();
+        }
 
-            TestarValidacaoDeCnpj();
+        private static void CarregarMenuPrincial()
+        {
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.ForegroundColor = corDeTituloDestacado;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||                    SELECIONE A ROTINA DE VALIDAÇÃO  /  SELECT THE VALIDATION ROUTINE                     ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.ForegroundColor = corDeTextoDefault;
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
-            TestarValidacaoPisPasep();
+            Console.WriteLine($"{PintaOpcaoEmDestaque(" 1)")} Testar validação de CPF                            /   Test \"CPF\" validation ");
+            Console.WriteLine($"{PintaOpcaoEmDestaque(" 2)")} Testar validação de Título de Eleitor              /   Test \"Voter card\" Validation ");
 
-            TestarInscricaoEstadual();
+            Console.WriteLine($"{PintaOpcaoEmDestaque(" 3)")} Testar validação de CNPJ                           /   Test \"CNPJ\" validation ");
+            Console.WriteLine($"{PintaOpcaoEmDestaque(" 4)")} Testar validação de PIS/PASEP                      /   Test \"PIS/PASEP\" validation ");
+            Console.WriteLine($"{PintaOpcaoEmDestaque(" 5)")} Testar validação de Inscrição Estadual             /   Test \"State Registration\" Validation ");
 
-            TestarValidacaoTituloDeEleitor();
+            Console.WriteLine($"{PintaOpcaoEmDestaque(" 6)")} Testar validação de CNH                            /   Test \"driver's License\" validation ");
+            Console.WriteLine($"{PintaOpcaoEmDestaque(" 7)")} Testar validação de RENAVAM                        /   Test \"RENAVAM\" validation ");
+            Console.WriteLine($"{PintaOpcaoEmDestaque(" 8)")} Testar validação de placa veicular                 /   Test \"license plate\" validation ");
+            
+            Console.WriteLine($"{PintaOpcaoEmDestaque(" 9)")} Testar validação de passaporte                     /   Test \"passport\" validation ");
+            Console.WriteLine($"{PintaOpcaoEmDestaque(" 0)")} Testar validação de CEP                            /   Test \"zip code\" validation ");
+            
+            Console.WriteLine("");
+            Console.ForegroundColor = corDeSaida;
+            Console.WriteLine(" Qualquer outra tecla para sair                        /   Any other key to exit ");
+            Console.ForegroundColor = corDeTextoDefault;
+            ConsoleKeyInfo tecla = Console.ReadKey();
 
-            TestarValidacaoRenavam();
+            switch (tecla.KeyChar)
+            {
+                case '1':
+                    Console.Clear();
+                    TestarValidacaoDeCpf();
+                    Console.ReadKey();
+                    CarregarMenuPrincial();
+                    break;
+                case '2':
+                    Console.Clear();
+                    TestarValidacaoTituloDeEleitor();
+                    Console.ReadKey();
+                    CarregarMenuPrincial();
+                    break;
+                case '3':
+                    Console.Clear();
+                    TestarValidacaoDeCnpj();
+                    Console.ReadKey();
+                    CarregarMenuPrincial();
+                    break;
+                case '4':
+                    Console.Clear();
+                    TestarValidacaoPisPasep();
+                    Console.ReadKey();
+                    CarregarMenuPrincial();
+                    break;
+                case '5':
+                    Console.Clear();
+                    TestarInscricaoEstadual();
+                    Console.ReadKey();
+                    CarregarMenuPrincial();
+                    break;
+                case '6':
+                    Console.Clear();
+                    TestarValidacaoCnh();
+                    Console.ReadKey();
+                    CarregarMenuPrincial();
+                    break;
+                case '7':
+                    Console.Clear();
+                    TestarValidacaoRenavam();
+                    Console.ReadKey();
+                    CarregarMenuPrincial();
+                    break;
+                case '8':
+                    Console.Clear();
+                    TestarValidacaoPlacaVeicular();
+                    Console.ReadKey();
+                    CarregarMenuPrincial();
+                    break;
+                case '9':
+                    Console.Clear();
+                    TestarValidacaoPassaporte();
+                    Console.ReadKey();
+                    CarregarMenuPrincial();
+                    break;
+                case '0':
+                    Console.Clear();
+                    TestarValidacaoCep();
+                    Console.ReadKey();
+                    CarregarMenuPrincial();
+                    break;
+                default:
+                    Console.Clear();
+                    ExibirLogo();
+                    Console.WriteLine("");
+                    Console.ForegroundColor = corDeSaida;
+                    Console.WriteLine("                                       Obrigado  / Thank you");
+                    Console.ForegroundColor = corDeTextoDefault;
+                    Console.WriteLine("");
+                    break;
+            }            
+        }
 
-            TestarValidacaoPassaporte();
-
-            TestarValidacaoCnh();
-
-            TestarValidacaoPlacaVeicular();
-
-            TestarValidacaoCep();
-
-            ExibirLogo();
+        private static string PintaOpcaoEmDestaque(string texto)
+        {
+            Console.ForegroundColor = corDeNumero;
+            Console.Write(texto);
+            Console.ForegroundColor = corDeTextoDefault;
+            return "";
         }
 
         private static void TestarInscricaoEstadual()
         {
-            Console.WriteLine(" +============================================================================================================+");
-            Console.WriteLine(" ||                             \"Inscrição Estadual (IE)\" VALIDATION EXAMPLES                                ||");
-            Console.WriteLine(" +============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||               Teste do validador de Inscrição Estadual / \"State Registration\" validator test             ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
+
+            Console.Write("Digite um Inscrição Estadual / Enter a State Registration number: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+            string inscricaoEstadual = Console.ReadLine();
+            Console.WriteLine("");
+
+            Console.BackgroundColor = corDeFundo;
+            Console.Write("Digite a UF da inscrição estadual / Enter the state abbreviation of the state registration: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+            string ufString = Console.ReadLine();
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
+
+            UnidadeDaFederacao uf = ConverteUfStringParaUf(ufString);
+
+            Console.Write("ClearCode: ");
+            inscricaoEstadual = InscricaoEstadualValidator.ClearCode(inscricaoEstadual);
+            Console.Write(PintaOpcaoEmDestaque(inscricaoEstadual));
+            Console.WriteLine("");
+
+            Console.Write("IsValid: ");
+            Console.Write(PintaOpcaoEmDestaque(InscricaoEstadualValidator.IsValid(inscricaoEstadual, uf).ToString()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationCode: ");
+            Console.Write(PintaOpcaoEmDestaque(InscricaoEstadualValidator.GetLastValidationCode()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(InscricaoEstadualValidator.GetLastValidationMessage()));
+            Console.WriteLine("");
+
+            Console.Write("ValidateReturningMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(InscricaoEstadualValidator.ValidateReturningMessage(inscricaoEstadual, uf)));
+            Console.WriteLine("");
+
+            Console.Write("Format: ");
+            Console.Write(PintaOpcaoEmDestaque(InscricaoEstadualValidator.Format(inscricaoEstadual, uf)));
+            Console.WriteLine("");
+
+            Console.Write("GetUFName (método exclusivo): ");
+            Console.Write(PintaOpcaoEmDestaque(InscricaoEstadualValidator.GetUFName(uf)));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Help: ");
+            Console.Write(PintaOpcaoEmDestaque(InscricaoEstadualValidator.Help()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Author: ");
+            Console.Write(PintaOpcaoEmDestaque(InscricaoEstadualValidator.Author()));
+
+            /*
             Console.WriteLine("Validating the UF \"AC\", which corresponds to the state \"" + InscricaoEstadualValidator.GetUFName(UnidadeDaFederacao.AC)+"\"");
-            Console.WriteLine(InscricaoEstadualValidator.IsValid("01.304.630/361-05", UnidadeDaFederacao.AC));      //Válido.
+            Console.WriteLine(InscricaoEstadualValidator.IsValid("5", UnidadeDaFederacao.AC));      //Válido.
             Console.WriteLine(InscricaoEstadualValidator.GetLastValidationCode());
             Console.WriteLine(InscricaoEstadualValidator.GetLastValidationMessage());
             Console.WriteLine("\n");
@@ -54,15 +218,138 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("");
             Console.WriteLine("Help: " + InscricaoEstadualValidator.Help());
             Console.WriteLine("");
+            */
+        }
 
+        private static UnidadeDaFederacao ConverteUfStringParaUf(string ufString)
+        {
+            switch (ufString.ToUpper())
+            {
+                case "AC":
+                    return UnidadeDaFederacao.AC;
+                case "AL":
+                    return UnidadeDaFederacao.AL;
+                case "AM":
+                    return UnidadeDaFederacao.AM;
+                case "AP":
+                    return UnidadeDaFederacao.AP;
+                case "BA":
+                    return UnidadeDaFederacao.BA;
+                case "CE":
+                    return UnidadeDaFederacao.CE;
+                case "DF":
+                    return UnidadeDaFederacao.DF;
+                case "ES":
+                    return UnidadeDaFederacao.ES;
+                case "GO":
+                    return UnidadeDaFederacao.GO;
+                case "MA":
+                    return UnidadeDaFederacao.MA;
+                case "MT":
+                    return UnidadeDaFederacao.MT;
+                case "MS":
+                    return UnidadeDaFederacao.MS;
+                case "MG":
+                    return UnidadeDaFederacao.MG;
+                case "PA":
+                    return UnidadeDaFederacao.PA;
+                case "PB":
+                    return UnidadeDaFederacao.PB;
+                case "PE":
+                    return UnidadeDaFederacao.PE;
+                case "PI":
+                    return UnidadeDaFederacao.PI;
+                case "PR":
+                    return UnidadeDaFederacao.PR;
+                case "RJ":
+                    return UnidadeDaFederacao.RJ;
+                case "RN":
+                    return UnidadeDaFederacao.RN;
+                case "RO":
+                    return UnidadeDaFederacao.RO;
+                case "RR":
+                    return UnidadeDaFederacao.RR;
+                case "RS":
+                    return UnidadeDaFederacao.RS;
+                case "SC":
+                    return UnidadeDaFederacao.SC;
+                case "SE":
+                    return UnidadeDaFederacao.SE;
+                case "SP":
+                    return UnidadeDaFederacao.SP;
+                case "TO":
+                    return UnidadeDaFederacao.TO;
+                default:
+                    return UnidadeDaFederacao.TO;
+            }
+            return UnidadeDaFederacao.TO;
         }
 
         private static void TestarValidacaoCep()
         {
-            Console.WriteLine(" +============================================================================================================+");
-            Console.WriteLine(" ||                                       \"CEP\" VALIDATION EXAMPLES                                          ||");
-            Console.WriteLine(" +============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||                          Teste do validador de CEP / \"Zip code\" validator test                           ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
+            Console.Write("Digite um CEP / Enter a Zip code number: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+
+            string cep = Console.ReadLine();
+
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
+
+            Console.Write("ClearCode: ");
+            cep = CepValidator.ClearCode(cep);
+            Console.Write(PintaOpcaoEmDestaque(cep));
+            Console.WriteLine("");
+
+            Console.Write("IsValid: ");
+            Console.Write(PintaOpcaoEmDestaque(CepValidator.IsValid(cep).ToString()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationCode: ");
+            Console.Write(PintaOpcaoEmDestaque(CepValidator.GetLastValidationCode()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(CepValidator.GetLastValidationMessage()));
+            Console.WriteLine("");
+
+            Console.Write("ValidateReturningMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(CepValidator.ValidateReturningMessage(cep)));
+            Console.WriteLine("");
+
+            Console.Write("Format: ");
+            Console.Write(PintaOpcaoEmDestaque(CepValidator.Format(cep)));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("CepExists (método exclusivo): ");
+            Console.Write(PintaOpcaoEmDestaque(CepValidator.CepExists(cep).ToString()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("GetCepAddressInJson (método exclusivo): ");
+            Console.Write(PintaOpcaoEmDestaque(CepValidator.GetCepAddressInJson(cep)));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Help: ");
+            Console.Write(PintaOpcaoEmDestaque(CepValidator.Help()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Author: ");
+            Console.Write(PintaOpcaoEmDestaque(CepValidator.Author()));
+
+            /*
             Console.WriteLine(CepValidator.IsValid("24465-430", false));                    // Valid. (without verifying the existence of the zip code)
             Console.WriteLine(CepValidator.GetLastValidationCode());
             Console.WriteLine(CepValidator.GetLastValidationMessage());
@@ -93,15 +380,69 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("");
             Console.WriteLine("Help: " + CepValidator.Help());
             Console.WriteLine("");
-
+            */
         }
 
         private static void TestarValidacaoPlacaVeicular()
         {
-            Console.WriteLine(" +============================================================================================================+");
-            Console.WriteLine(" ||                            EXAMPLES OF \"VEHICLE LICENSE PLATE\" VALIDATION                                ||");
-            Console.WriteLine(" +============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||                    Teste do validador de placa veicular / \"Licence plate\" validator test                 ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
+
+            Console.Write("Digite um placa veicular / Enter a licence plate number: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+
+            string placaVeicular = Console.ReadLine();
+
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
+
+            Console.Write("ClearCode: ");
+            placaVeicular = PlacaVeicularValidator.ClearCode(placaVeicular);
+            Console.Write(PintaOpcaoEmDestaque(placaVeicular));
+            Console.WriteLine("");
+
+            Console.Write("IsValid: ");
+            Console.Write(PintaOpcaoEmDestaque(PlacaVeicularValidator.IsValid(placaVeicular).ToString()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationCode: ");
+            Console.Write(PintaOpcaoEmDestaque(PlacaVeicularValidator.GetLastValidationCode()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(PlacaVeicularValidator.GetLastValidationMessage()));
+            Console.WriteLine("");
+
+            Console.Write("ValidateReturningMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(PlacaVeicularValidator.ValidateReturningMessage(placaVeicular)));
+            Console.WriteLine("");
+
+            Console.Write("Format: ");
+            Console.Write(PintaOpcaoEmDestaque(PlacaVeicularValidator.Format(placaVeicular)));
+            Console.WriteLine("");
+
+            Console.Write("IdentifiesFederativeUnitoftheGrayPlate (método exclusivo): ");
+            Console.Write(PintaOpcaoEmDestaque(PlacaVeicularValidator.IdentifiesFederativeUnitoftheGrayPlate(placaVeicular)));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Help: ");
+            Console.Write(PintaOpcaoEmDestaque(PlacaVeicularValidator.Help()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Author: ");
+            Console.Write(PintaOpcaoEmDestaque(PlacaVeicularValidator.Author()));
+
+            /*
             Console.WriteLine(PlacaVeicularValidator.IsValid("AB-1234"));                           // Valid. Yellow license plate.
             Console.WriteLine(PlacaVeicularValidator.GetLastValidationCode());
             Console.WriteLine(PlacaVeicularValidator.GetLastValidationMessage());
@@ -114,7 +455,8 @@ namespace BrazilianDocumentsTester
             Console.WriteLine(PlacaVeicularValidator.GetLastValidationCode());
             Console.WriteLine(PlacaVeicularValidator.GetLastValidationMessage());
 
-            Console.WriteLine(PlacaVeicularValidator.ValidateReturningMessage("DDW-1234"));         // Valid. Gray license plate.
+            Console.WriteLine(PlacaVeicularValidator.ValidateReturningMessage("
+            "));         // Valid. Gray license plate.
             Console.WriteLine(PlacaVeicularValidator.ValidateReturningMessage("HZ-1234"));          // Valid. Yellow license plate.
             Console.WriteLine(PlacaVeicularValidator.ValidateReturningMessage("HZA1B23"));          // Valid. MERCOSUL license plate.
 
@@ -136,15 +478,64 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("");
             Console.WriteLine("Help: " + PlacaVeicularValidator.Help());
             Console.WriteLine("");
-
+            */
         }
 
         private static void TestarValidacaoCnh()
         {
-            Console.WriteLine(" +============================================================================================================+");
-            Console.WriteLine(" ||                               EXAMPLES OF \"DRIVER'S LICENSE\" VALIDATION                                  ||");
-            Console.WriteLine(" +============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||                     Teste do validador de CNH / \"Driver's License\" validator test                        ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
+            Console.Write("Digite um CNH / Enter a Driver's License number: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+
+            string cnh = Console.ReadLine();
+
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
+
+            Console.Write("ClearCode: ");
+            cnh = CnhValidator.ClearCode(cnh);
+            Console.Write(PintaOpcaoEmDestaque(cnh));
+            Console.WriteLine("");
+
+            Console.Write("IsValid: ");
+            Console.Write(PintaOpcaoEmDestaque(CnhValidator.IsValid(cnh).ToString()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationCode: ");
+            Console.Write(PintaOpcaoEmDestaque(CnhValidator.GetLastValidationCode()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(CnhValidator.GetLastValidationMessage()));
+            Console.WriteLine("");
+
+            Console.Write("ValidateReturningMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(CnhValidator.ValidateReturningMessage(cnh)));
+            Console.WriteLine("");
+
+            Console.Write("Format: ");
+            Console.Write(PintaOpcaoEmDestaque(CnhValidator.Format(cnh)));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Help: ");
+            Console.Write(PintaOpcaoEmDestaque(CnhValidator.Help()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Author: ");
+            Console.Write(PintaOpcaoEmDestaque(CnhValidator.Author()));
+
+            /*
             Console.WriteLine(CnhValidator.IsValid("76818606292"));                          // Valid.
             Console.WriteLine(CnhValidator.GetLastValidationCode());
             Console.WriteLine(CnhValidator.GetLastValidationMessage());
@@ -168,15 +559,64 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("");
             Console.WriteLine("Help: " + CnhValidator.Help());
             Console.WriteLine("");
-
+            */
         }
 
         private static void TestarValidacaoPassaporte()
         {
-            Console.WriteLine(" +============================================================================================================+");
-            Console.WriteLine(" ||                                      \"PASSPORT\" VALIDATION EXAMPLES                                      ||");
-            Console.WriteLine(" +============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||                     Teste do validador de Passaporte / \"Passport\" validator test                         ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
+
+            Console.Write("Digite um Passaporte / Enter a Passport number: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+
+            string passaporte = Console.ReadLine();
+
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
+
+            Console.Write("ClearCode: ");
+            passaporte = PassaporteValidator.ClearCode(passaporte);
+            Console.Write(PintaOpcaoEmDestaque(passaporte));
+            Console.WriteLine("");
+
+            Console.Write("IsValid: ");
+            Console.Write(PintaOpcaoEmDestaque(PassaporteValidator.IsValid(passaporte).ToString()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationCode: ");
+            Console.Write(PintaOpcaoEmDestaque(PassaporteValidator.GetLastValidationCode()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(PassaporteValidator.GetLastValidationMessage()));
+            Console.WriteLine("");
+
+            Console.Write("ValidateReturningMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(PassaporteValidator.ValidateReturningMessage(passaporte)));
+            Console.WriteLine("");
+
+            Console.Write("Format: ");
+            Console.Write(PintaOpcaoEmDestaque(PassaporteValidator.Format(passaporte)));
+            Console.WriteLine("");
+
+            Console.Write("Help: ");
+            Console.Write(PintaOpcaoEmDestaque(PassaporteValidator.Help()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Author: ");
+            Console.Write(PintaOpcaoEmDestaque(PassaporteValidator.Author()));
+
+            /*
             Console.WriteLine(PassaporteValidator.IsValid("YN011222"));                          // Valid.
             Console.WriteLine(PassaporteValidator.GetLastValidationCode());
             Console.WriteLine(PassaporteValidator.GetLastValidationMessage());
@@ -204,15 +644,63 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("");
             Console.WriteLine("Help: " + PassaporteValidator.Help());
             Console.WriteLine("");
-
+            */
         }
 
         private static void TestarValidacaoRenavam()
         {
-            Console.WriteLine(" +============================================================================================================+");
-            Console.WriteLine(" ||                                      \"RENAVAM\" VALIDATION EXAMPLES                                       ||");
-            Console.WriteLine(" +============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||                        Teste do validador de RENAVAM / \"RENAVAM\" validator test                          ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
+            Console.Write("Digite um RENAVAM / Enter a RENAVAM number: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+
+            string renavam = Console.ReadLine();
+
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
+
+            Console.Write("ClearCode: ");
+            renavam = RenavamValidator.ClearCode(renavam);
+            Console.Write(PintaOpcaoEmDestaque(renavam));
+            Console.WriteLine("");
+
+            Console.Write("IsValid: ");
+            Console.Write(PintaOpcaoEmDestaque(RenavamValidator.IsValid(renavam).ToString()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationCode: ");
+            Console.Write(PintaOpcaoEmDestaque(RenavamValidator.GetLastValidationCode()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(RenavamValidator.GetLastValidationMessage()));
+            Console.WriteLine("");
+
+            Console.Write("ValidateReturningMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(RenavamValidator.ValidateReturningMessage(renavam)));
+            Console.WriteLine("");
+
+            Console.Write("Format: ");
+            Console.Write(PintaOpcaoEmDestaque(RenavamValidator.Format(renavam)));
+            Console.WriteLine("");
+
+            Console.Write("Help: ");
+            Console.Write(PintaOpcaoEmDestaque(RenavamValidator.Help()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Author: ");
+            Console.Write(PintaOpcaoEmDestaque(RenavamValidator.Author()));
+
+            /*
             Console.WriteLine(RenavamValidator.IsValid("97668273502"));                          // Valid.
             Console.WriteLine(RenavamValidator.GetLastValidationCode());
             Console.WriteLine(RenavamValidator.GetLastValidationMessage());
@@ -236,15 +724,69 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("");
             Console.WriteLine("Help: " + RenavamValidator.Help());
             Console.WriteLine("");
-
+            */
         }
 
         private static void TestarValidacaoTituloDeEleitor()
         {
-            Console.WriteLine(" +============================================================================================================+");
-            Console.WriteLine(" ||                                  EXAMPLES OF \"VOTER CARD\" VALIDATION                                     ||");
-            Console.WriteLine(" +============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||                  Teste do validador de título de eleitor  / \"Voter card\" validator test                  ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
+
+            Console.Write("Digite um título de eleitor / Enter a voter card number: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+
+            string titulo = Console.ReadLine();
+
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
+
+            Console.Write("ClearCode: ");
+            titulo = TituloEleitoralValidator.ClearCode(titulo);
+            Console.Write(PintaOpcaoEmDestaque(titulo));
+            Console.WriteLine("");
+
+            Console.Write("IsValid: ");
+            Console.Write(PintaOpcaoEmDestaque(TituloEleitoralValidator.IsValid(titulo).ToString()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationCode: ");
+            Console.Write(PintaOpcaoEmDestaque(TituloEleitoralValidator.GetLastValidationCode()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(TituloEleitoralValidator.GetLastValidationMessage()));
+            Console.WriteLine("");
+
+            Console.Write("ValidateReturningMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(TituloEleitoralValidator.ValidateReturningMessage(titulo)));
+            Console.WriteLine("");
+
+            Console.Write("Format (default): ");
+            Console.Write(PintaOpcaoEmDestaque(TituloEleitoralValidator.Format(titulo)));
+            Console.WriteLine("");
+
+            Console.Write("Format (enviando separadores / método exclusivo): ");
+            Console.Write(PintaOpcaoEmDestaque(TituloEleitoralValidator.Format(titulo, '-', '-')));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Help: ");
+            Console.Write(PintaOpcaoEmDestaque(TituloEleitoralValidator.Help()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Author: ");
+            Console.Write(PintaOpcaoEmDestaque(TituloEleitoralValidator.Author()));
+			
+			/*
             Console.WriteLine("--------------------------------------[Aleatórios]");
             Console.WriteLine(TituloEleitoralValidator.IsValid("106644440302"));    // Valid.
             Console.WriteLine(TituloEleitoralValidator.GetLastValidationCode());
@@ -302,15 +844,66 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("");
             Console.WriteLine("Help: " + TituloEleitoralValidator.Help());
             Console.WriteLine("");
-
+			*/
         }
 
         private static void TestarValidacaoPisPasep()
         {
-            Console.WriteLine(" +============================================================================================================+");
-            Console.WriteLine(" ||                                     \"PIS-PASEP\" VALIDATION EXAMPLES                                      ||");
-            Console.WriteLine(" +============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||                      Teste do validador de PIS-PASEP  / \"PIS-PASEP\" validator test                       ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
+
+            Console.Write("Digite um PIS-PASEP / Enter a PIS-PASEP number: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+
+            string pisPasep = Console.ReadLine();
+
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
+
+            Console.Write("ClearCode: ");
+            pisPasep = PisPasepValidator.ClearCode(pisPasep);
+            Console.Write(PintaOpcaoEmDestaque(pisPasep));
+            Console.WriteLine("");
+
+            Console.Write("IsValid: ");
+            Console.Write(PintaOpcaoEmDestaque(PisPasepValidator.IsValid(pisPasep).ToString()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationCode: ");
+            Console.Write(PintaOpcaoEmDestaque(PisPasepValidator.GetLastValidationCode()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(PisPasepValidator.GetLastValidationMessage()));
+            Console.WriteLine("");
+
+            Console.Write("ValidateReturningMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(PisPasepValidator.ValidateReturningMessage(pisPasep)));
+            Console.WriteLine("");
+
+            Console.Write("Format: ");
+            Console.Write(PintaOpcaoEmDestaque(PisPasepValidator.Format(pisPasep)));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Help: ");
+            Console.Write(PintaOpcaoEmDestaque(PisPasepValidator.Help()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Author: ");
+            Console.Write(PintaOpcaoEmDestaque(PisPasepValidator.Author()));
+
+
+            /*
             PisPasepValidator.IsValid("135.84160.29 - 3");                                      // Valid.
             Console.WriteLine(PisPasepValidator.GetLastValidationCode());
             Console.WriteLine(PisPasepValidator.GetLastValidationMessage());
@@ -330,15 +923,65 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("");
             Console.WriteLine("Help: " + PisPasepValidator.Help());
             Console.WriteLine("");
-
+            */
         }
 
         private static void TestarValidacaoDeCnpj()
         {
-            Console.WriteLine(" +============================================================================================================+");
-            Console.WriteLine(" ||                                        \"CNPJ\" VALIDATION EXAMPLES                                        ||");
-            Console.WriteLine(" +============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||                          Teste do validador de CNPJ  / \"CNPJ\" validator test                             ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
+
+            Console.Write("Digite um CNPJ / Enter a CNPJ number: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+
+            string cnpj = Console.ReadLine();
+
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
+
+            Console.Write("ClearCode: ");
+            cnpj = CnpjValidator.ClearCode(cnpj);
+            Console.Write(PintaOpcaoEmDestaque(cnpj));
+            Console.WriteLine("");
+
+            Console.Write("IsValid: ");
+            Console.Write(PintaOpcaoEmDestaque(CnpjValidator.IsValid(cnpj).ToString()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationCode: ");
+            Console.Write(PintaOpcaoEmDestaque(CnpjValidator.GetLastValidationCode()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(CnpjValidator.GetLastValidationMessage()));
+            Console.WriteLine("");
+
+            Console.Write("ValidateReturningMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(CnpjValidator.ValidateReturningMessage(cnpj)));
+            Console.WriteLine("");
+
+            Console.Write("Format: ");
+            Console.Write(PintaOpcaoEmDestaque(CnpjValidator.Format(cnpj)));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Help: ");
+            Console.Write(PintaOpcaoEmDestaque(CnpjValidator.Help()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Author: ");
+            Console.Write(PintaOpcaoEmDestaque(CnpjValidator.Author()));
+			
+			/*
             Console.WriteLine(CnpjValidator.IsValid("75247370000127"));                          // Valid.
             Console.WriteLine(CnpjValidator.GetLastValidationCode());
             Console.WriteLine(CnpjValidator.GetLastValidationMessage());
@@ -365,16 +1008,68 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("");
             Console.WriteLine("Help: " + CnpjValidator.Help());
             Console.WriteLine("");
-
+			*/
         }
 
         private static void TestarValidacaoDeCpf()
         {
-            Console.WriteLine(" +============================================================================================================+");
-            Console.WriteLine(" ||                                         \"CPF\" VALIDATION EXAMPLES                                        ||");
-            Console.WriteLine(" +============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.Clear();
+            Console.WriteLine("");
+            Console.BackgroundColor = corDeTitulo;
+            Console.WriteLine("+============================================================================================================+");
+            Console.WriteLine("||                           Teste do validador de CPF  / \"CPF\" validator test                              ||");
+            Console.WriteLine("+============================================================================================================+");
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
 
+            Console.Write("Digite um CPF / Enter a CPF number: ");
+            Console.BackgroundColor = ConsoleColor.Blue;
 
+            string cpf = Console.ReadLine();            
+
+            Console.BackgroundColor = corDeFundo;
+            Console.WriteLine("");
+
+            Console.Write("ClearCode: ");
+            cpf = CpfValidator.ClearCode(cpf);
+            Console.Write(PintaOpcaoEmDestaque(cpf));
+            Console.WriteLine("");
+
+            Console.Write("IsValid: ");
+            Console.Write(PintaOpcaoEmDestaque(CpfValidator.IsValid(cpf).ToString()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationCode: ");
+            Console.Write(PintaOpcaoEmDestaque(CpfValidator.GetLastValidationCode()));
+            Console.WriteLine("");
+
+            Console.Write("GetLastValidationMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(CpfValidator.GetLastValidationMessage()));
+            Console.WriteLine("");
+
+            Console.Write("ValidateReturningMessage: ");
+            Console.Write(PintaOpcaoEmDestaque(CpfValidator.ValidateReturningMessage(cpf)));
+            Console.WriteLine("");
+
+            Console.Write("Format: ");
+            Console.Write(PintaOpcaoEmDestaque(CpfValidator.Format(cpf)));
+            Console.WriteLine("");
+
+            Console.Write("ObtainCpfTaxRegion (método exclusivo): ");
+            Console.Write(PintaOpcaoEmDestaque(CpfValidator.ObtainCpfTaxRegion(cpf)));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Help: ");
+            Console.Write(PintaOpcaoEmDestaque(CpfValidator.Help()));
+            Console.WriteLine("");
+            Console.WriteLine("");
+
+            Console.Write("Author: ");
+            Console.Write(PintaOpcaoEmDestaque(CpfValidator.Author()));
+			
+			/*
             Console.WriteLine(CpfValidator.IsValid("27107407023"));      // Valid.
             Console.WriteLine(CpfValidator.GetLastValidationCode());
             Console.WriteLine(CpfValidator.GetLastValidationMessage());
@@ -404,13 +1099,12 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("");
             Console.WriteLine("Help: " + CpfValidator.Help());
             Console.WriteLine("");
-
+			*/
         }
 
         private static void ExibirLogo()
         {
-            Console.WriteLine("                                                                                                      ");
-            Console.WriteLine("                                                                                                      ");
+            Console.ForegroundColor = corDoLogo;
             Console.WriteLine("                                                                                                      ");
             Console.WriteLine("            -                                                                          .:             ");
             Console.WriteLine("            #*.                                                                       =@.             ");
@@ -471,8 +1165,6 @@ namespace BrazilianDocumentsTester
             Console.WriteLine("                                        :=#@@@@#=. -*%@@@%+-                                          ");
             Console.WriteLine("                                           .=*@@@@@@@@#+:                                             ");
             Console.WriteLine("                                               -*%@#=.                                                ");
-            Console.WriteLine("                                                                                                      ");
-            Console.WriteLine("                                                                                                      ");
             Console.WriteLine("                                                                                                      ");
         }
 
